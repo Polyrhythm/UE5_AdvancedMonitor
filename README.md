@@ -25,19 +25,19 @@ There is a sample scene to show the idea. Basically, instantiate the included ma
 <hr>
 
 ### Waveform
-![](Screenshots/Waveform.png)
+![](Screenshots/Waveform.PNG)
 A luma-based waveform which can tell you where your levels are falling using Rec. 709 coefficients for the RGB luma-weighting. Use this for checking your overall exposure.
 <hr>
 <br/>
 
 ### RGB Parade
-![](Screenshots/RGBParade.png)
+![](Screenshots/RGBParade.PNG)
 Separates the waveform into individual RGB channels so you can easily balance individual channels. Use this for adjusting white balance or keeping an eye on the relative strength of individual channels.
 <hr>
 <br>
 
 ### Various grading tools
-![](Screenshots/Mixer.png)
+![](Screenshots/Mixer.PNG)
 In addition to the monitors, there is a second material with various grading controls that don't come stock with UE4 such as channel mixing. You can add this material to your post-process stack simultaneously with the monitor material.
 
 ## Notes
