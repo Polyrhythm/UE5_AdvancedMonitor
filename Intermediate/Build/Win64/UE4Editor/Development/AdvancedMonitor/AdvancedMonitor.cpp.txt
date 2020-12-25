@@ -1,0 +1,8 @@
+C:\Users\jones\Documents\Unreal Projects\CodeProject\Plugins\AdvancedMonitor\Intermediate\Build\Win64\UE4Editor\Development\AdvancedMonitor\Definitions.AdvancedMonitor.h
+C:\Users\jones\Documents\Unreal Projects\CodeProject\Plugins\AdvancedMonitor\Source\AdvancedMonitor\Public\AdvancedMonitor.h
+E:\Epic\UE_4.26\Engine\Source\Runtime\Projects\Public\Interfaces/IPluginManager.h
+E:\Epic\UE_4.26\Engine\Source\Runtime\Projects\Public\PluginDescriptor.h
+E:\Epic\UE_4.26\Engine\Source\Runtime\Projects\Public\ModuleDescriptor.h
+E:\Epic\UE_4.26\Engine\Source\Runtime\Projects\Public\CustomBuildSteps.h
+E:\Epic\UE_4.26\Engine\Source\Runtime\Projects\Public\LocalizationDescriptor.h
+E:\Epic\UE_4.26\Engine\Source\Runtime\Projects\Public\PluginReferenceDescriptor.h

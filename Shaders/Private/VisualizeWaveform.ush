@@ -1,0 +1,111 @@
+// IN - float2 BOXMIN
+// IN - float2 BOXMAX
+// IN - float2 UV_custom
+// IN - float OPACITY
+// IN - float PARADE
+// OUT - float3 outColor
+
+#define PP0 14
+#define WAVEFORM_RES 100
+#define WAVEFORM_INTENSITY 0.1
+
+#pragma once
+
+struct Waveform
+{
+    void GetWaveformBounds(float2 uv, out float maxb, out float minb, out float2 newUV)
+    {
+        const float EPS = 0.004;
+        newUV = 1.0 - uv.y * 1.1 + 0.05;
+        maxb = newUV + EPS;
+        minb = newUV - EPS;
+    }
+
+    void DrawBounds(float2 uv, out float3 result)
+    {
+        const float EPS = 0.005;
+        if (uv.y >= 0.0 - EPS && uv.y <= 0.0 + EPS ||
+            uv.y >= 1.0 - EPS && uv.y <= 1.0 + EPS)
+        {
+            result = float3(0.75, 0.75, 0.0);
+            return;
+        }
+
+        if (uv.y >= 0.5 - EPS && uv.y <= 0.5 + EPS)
+        {
+            result = float3(0.35, 0.35, 0.0);
+            return;
+        }
+
+        result = 0.0;
+    }
+
+    float3 RGBParade(float2 uv)
+    {
+        float3 result = 0.0;
+
+        float maxb, minb;
+        float2 newUV;
+        GetWaveformBounds(uv, maxb, minb, newUV);
+        DrawBounds(newUV, result);
+
+        for (int i = 0; i < WAVEFORM_RES / 3; i++)
+        {
+            float3 scene = SceneTextureLookup(float2(uv.x * 3.0 % 1.0, (float)i/((float)WAVEFORM_RES / 3.0)), PP0, 0).rgb;
+            
+            float3 l = 0.0;
+            if (uv.x <= 0.33) l = float3(scene.r, 0.0, 0.0);
+            else if (uv.x <= 0.66) l = float3(0.0, scene.g, 0.0);
+            else l = float3(0.0, 0.0, scene.b);
+
+            result += WAVEFORM_INTENSITY * step(l, maxb * maxb) * step(minb * minb, l);
+        }
+
+        return result;
+    }
+
+    float3 RGBWaveform(float2 uv)
+    {
+        float3 result = 0.0;
+        float maxb, minb;
+        float2 newUV;
+        GetWaveformBounds(uv, maxb, minb, newUV);
+        DrawBounds(newUV, result);
+
+        for (int i = 0; i < WAVEFORM_RES; i++)
+        {
+            float3 scene = SceneTextureLookup(float2(uv.x, (float)i/(float)WAVEFORM_RES), PP0, 0).rgb;
+
+            float l = 0.2126 * scene.r + 0.7152 * scene.g + 0.0722 * scene.b;
+            result += WAVEFORM_INTENSITY * step(l, maxb * maxb) * step(minb * minb, l);
+        }
+
+        return result;
+    }
+
+    float3 main(float2 boxMin, float2 boxMax, float2 uv1, float2 uv2, float opacity, float isParade)
+    {
+        float3 sceneColor = SceneTextureLookup(uv1, PP0, 0).rgb;
+
+        if (uv2.x >= boxMin.x && uv2.x <= boxMax.x &&
+            uv2.y >= boxMin.y && uv2.y <= boxMax.y)
+        {
+            float2 boxUV = float2(
+                (uv2.x - boxMin.x) / (boxMax.x - boxMin.x),
+                (uv2.y - boxMin.y) / (boxMax.y - boxMin.y)
+            );
+
+            if (isParade == 1.0) return lerp(sceneColor, RGBParade(boxUV), opacity);
+            return lerp(sceneColor, RGBWaveform(boxUV), opacity);
+        }
+
+        return sceneColor;
+    }
+};
+
+Waveform waveform;
+
+
+float2 UVt = GetSceneTextureUV(Parameters); 
+outColor = waveform.main(BOXMIN, BOXMAX, UVt, UV_custom, OPACITY, PARADE);
+
