@@ -8,10 +8,10 @@ This plugin aims to add some color grading-friendly monitors for keeping an eye 
 These tools are implemented using PostProcess materials and custom HLSL nodes. This is intended to be for editor use only but nothing is stopping you from shipping a runtime with these materials enabled.
 
 ## Quick-start
-Download or clone this directory into a `plugins` directory of your UE4 project.
+Download or clone this directory into a `Plugins` directory of your UE4 project.
 A complete path might look like:
 ```
-...my-project/plugins/AdvancedMonitor
+...my-project/Plugins/AdvancedMonitor
 ```
 
 Then just open your project in UE4, `Edit -> Plugins` and look for the AdvancedMonitor plugin to enable it.
