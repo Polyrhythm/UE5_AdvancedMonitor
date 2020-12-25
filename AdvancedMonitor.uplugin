@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.8",
+	"FriendlyName": "AdvancedMonitor",
+	"Description": "",
+	"Category": "Rendering",
+	"CreatedBy": "Ryan Jones",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "AdvancedMonitor",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
