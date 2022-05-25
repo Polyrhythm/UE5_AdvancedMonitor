@@ -3,6 +3,7 @@
 // IN - float2 UV_custom
 // IN - float OPACITY
 // IN - float PARADE
+// IN - float3 SCENE_COLOR
 // OUT - float3 outColor
 
 #define PP0 14
@@ -83,9 +84,9 @@ struct Waveform
         return result;
     }
 
-    float3 main(float2 boxMin, float2 boxMax, float2 uv1, float2 uv2, float opacity, float isParade)
+    float3 main(float2 boxMin, float2 boxMax, float2 uv1, float2 uv2, float opacity, float isParade, float3 sceneColor)
     {
-        float3 sceneColor = SceneTextureLookup(uv1, PP0, 0).rgb;
+        //float3 sceneColor = SceneTextureLookup(uv1, PP0, 0).rgb;
 
         if (uv2.x >= boxMin.x && uv2.x <= boxMax.x &&
             uv2.y >= boxMin.y && uv2.y <= boxMax.y)
@@ -107,5 +108,5 @@ Waveform waveform;
 
 
 float2 UVt = GetSceneTextureUV(Parameters); 
-outColor = waveform.main(BOXMIN, BOXMAX, UVt, UV_custom, OPACITY, PARADE);
+outColor = waveform.main(BOXMIN, BOXMAX, UVt, UV_custom, OPACITY, PARADE, SCENE_COLOR);
 

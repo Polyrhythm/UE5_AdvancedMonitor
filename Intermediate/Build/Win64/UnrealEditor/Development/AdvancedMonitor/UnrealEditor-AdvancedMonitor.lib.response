@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-AdvancedMonitor.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\polyr\Documents\Unreal Projects\CitySubwayTrainModular\Intermediate\Build\Win64\UnrealEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\polyr\Documents\Unreal Projects\CitySubwayTrainModular\Plugins\AdvancedMonitor\Intermediate\Build\Win64\UnrealEditor\Development\AdvancedMonitor\AdvancedMonitor.cpp.obj"
+"C:\Users\polyr\Documents\Unreal Projects\CitySubwayTrainModular\Plugins\AdvancedMonitor\Intermediate\Build\Win64\UnrealEditor\Development\AdvancedMonitor\Default.rc2.res"
+/OUT:"C:\Users\polyr\Documents\Unreal Projects\CitySubwayTrainModular\Plugins\AdvancedMonitor\Intermediate\Build\Win64\UnrealEditor\Development\AdvancedMonitor\UnrealEditor-AdvancedMonitor.lib"
