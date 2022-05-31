@@ -4,6 +4,7 @@
 // IN - float OPACITY
 // IN - float PARADE
 // IN - float3 SCENE_COLOR
+// IN - float3 TINT
 // OUT - float3 outColor
 
 #define PP0 14
@@ -65,7 +66,7 @@ struct Waveform
         return result;
     }
 
-    float3 RGBWaveform(float2 uv)
+    float3 RGBWaveform(float2 uv, float3 waveformTint)
     {
         float3 result = 0.0;
         float maxb, minb;
@@ -78,13 +79,14 @@ struct Waveform
             float3 scene = SceneTextureLookup(float2(uv.x, (float)i/(float)WAVEFORM_RES), PP0, 0).rgb;
 
             float l = 0.2126 * scene.r + 0.7152 * scene.g + 0.0722 * scene.b;
-            result += WAVEFORM_INTENSITY * step(l, maxb * maxb) * step(minb * minb, l);
+            result += saturate(WAVEFORM_INTENSITY * step(l, maxb * maxb) * step(minb * minb, l)) * waveformTint;
         }
 
         return result;
     }
 
-    float3 main(float2 boxMin, float2 boxMax, float2 uv1, float2 uv2, float opacity, float isParade, float3 sceneColor)
+    float3 main(float2 boxMin, float2 boxMax, float2 uv1, float2 uv2, float opacity, float isParade, float3 sceneColor,
+                float3 waveformTint)
     {
         //float3 sceneColor = SceneTextureLookup(uv1, PP0, 0).rgb;
 
@@ -97,7 +99,7 @@ struct Waveform
             );
 
             if (isParade == 1.0) return lerp(sceneColor, RGBParade(boxUV), opacity);
-            return lerp(sceneColor, RGBWaveform(boxUV), opacity);
+            return lerp(sceneColor, RGBWaveform(boxUV, waveformTint), opacity);
         }
 
         return sceneColor;
@@ -108,5 +110,5 @@ Waveform waveform;
 
 
 float2 UVt = GetSceneTextureUV(Parameters); 
-outColor = waveform.main(BOXMIN, BOXMAX, UVt, UV_custom, OPACITY, PARADE, SCENE_COLOR);
+outColor = waveform.main(BOXMIN, BOXMAX, UVt, UV_custom, OPACITY, PARADE, SCENE_COLOR, TINT);
 
