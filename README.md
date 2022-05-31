@@ -1,9 +1,8 @@
 # Advanced Monitor Plugin
-This is currently in an early state! Don't sue me if your computer catches fire!
-
+This is currently in an early state. Feel free to make suggestions or request support.
 
 ## Intro
-This plugin aims to add some color grading-friendly monitors for keeping an eye on your exposure and levels while grading or adjusting exposure inside of UE4.
+This plugin aims to add some color grading-friendly monitors for keeping an eye on your exposure and levels while grading or adjusting exposure inside of UE5.
 
 These tools are implemented using PostProcess materials and custom HLSL nodes. This is intended to be for editor use only but nothing is stopping you from shipping a runtime with these materials enabled.
 
@@ -14,7 +13,7 @@ A complete path might look like:
 ...my-project/Plugins/AdvancedMonitor
 ```
 
-Then just open your project in UE4, `Edit -> Plugins` and look for the AdvancedMonitor plugin to enable it.
+Then just open your project in UE5, `Edit -> Plugins` and look for the AdvancedMonitor plugin to enable it.
 
 To access the materials, make sure you enable `Show Plugin Content` in your asset browser:
 ![](Screenshots/plugin-content.png)
@@ -46,5 +45,5 @@ Note that because they are running naively in pixel shaders and involve a lot of
 Lastly - originally I wanted to package these as shaders directly injected into the render post-process pipeline as compute shaders, but because of a limitation of the current UE4 API, plugins cannot do this. So, in the interest of making the plugin share-able, I've opted for this slightly less performant approach of PostProcess materials.
 
 ## Changelog
-
+0.8.0 UE5 Update, minor fixes with Texture UV calculation
 0.8.0 Initial release
