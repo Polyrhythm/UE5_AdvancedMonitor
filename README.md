@@ -46,5 +46,6 @@ Note that because they are running naively in pixel shaders and involve a lot of
 Lastly - originally I wanted to package these as shaders directly injected into the render post-process pipeline as compute shaders, but because of a limitation of the current UE4 API, plugins cannot do this. So, in the interest of making the plugin share-able, I've opted for this slightly less performant approach of PostProcess materials.
 
 ## Changelog
+0.9.0 Adds false color support and a blueprint interface
 0.8.0 UE5 Update, minor fixes with Texture UV calculation
 0.8.0 Initial release
