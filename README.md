@@ -18,7 +18,8 @@ Then just open your project in UE5, `Edit -> Plugins` and look for the AdvancedM
 To access the materials, make sure you enable `Show Plugin Content` in your asset browser:
 ![](Screenshots/plugin-content.png)
 
-There is a sample scene to show the idea. Basically, instantiate the included material and add it to your PostProcess stack.
+Add the `BP_Monitor` blueprint found in the AdvancedMonitor plugin directory anywhere in your scene.
+It will add a PostProcess volume with materials to show the functionality. Interact with the blueprint parameters to change the settings.
 
 ## Features
 <hr>
